@@ -10,22 +10,6 @@ import NotFound from './Pages/NotFound';
 function App() {
   const { isLoggedIn } = useSelector((state) => (state.authreducer));
 
-  // function renderRoutes(isLoggedIn = false) {
-  //   if (!isLoggedIn) {
-  //     return (
-  //       <Fragment>
-  //         <Route path='/' Component={SignUp} />
-  //         <Route path='/login' Component={Login} />
-  //       </Fragment>
-  //     )
-  //   } else {
-  //     return (
-  //       <Fragment>
-  //         <Route path='/dashboard' Component={Dashboard} />
-  //       </Fragment>
-  //     )
-  //   }
-  // }
   return (
     <div className="App">
       <Routes>
