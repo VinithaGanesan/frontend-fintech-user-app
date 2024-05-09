@@ -18,7 +18,7 @@ export default function SignUp() {
     const password = passwordRef.current.value;
 
     if (firstName.length > 0 && lastName.length > 0 && email.length > 0 && password.length > 0) {
-      fetch("http://localhost:5000/api/auth/create", {
+      fetch("https://backend-fintech-user-app.onrender.com/api/auth/create", {
         method: "POST",
         body: JSON.stringify({
           firstName,

@@ -17,7 +17,7 @@ export default function Login() {
     const password = passwordRef.current.value;
 
     if (email.length > 0 && password.length > 0) {
-      fetch("http://localhost:5000/api/auth/signin", {
+      fetch("https://backend-fintech-user-app.onrender.com/api/auth/signin", {
         method: "POST",
         body: JSON.stringify({
           email,
