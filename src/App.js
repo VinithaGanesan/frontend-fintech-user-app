@@ -1,23 +1,47 @@
-import logo from './logo.svg';
+import { useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import { Fragment } from 'react';
+import SignUp from './Pages/SignUp';
+import Login from './Pages/Login';
+import Dashboard from './Pages/Dashboard';
+import NotFound from './Pages/NotFound';
 
 function App() {
+  const { isLoggedIn } = useSelector((state) => (state.authreducer));
+
+  // function renderRoutes(isLoggedIn = false) {
+  //   if (!isLoggedIn) {
+  //     return (
+  //       <Fragment>
+  //         <Route path='/' Component={SignUp} />
+  //         <Route path='/login' Component={Login} />
+  //       </Fragment>
+  //     )
+  //   } else {
+  //     return (
+  //       <Fragment>
+  //         <Route path='/dashboard' Component={Dashboard} />
+  //       </Fragment>
+  //     )
+  //   }
+  // }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        {!isLoggedIn && (
+          <Fragment>
+            <Route path='/' Component={SignUp} />
+            <Route path='/login' Component={Login} />
+          </Fragment>
+        )}
+        {isLoggedIn && (
+          <Fragment>
+          <Route path='/dashboard' Component={Dashboard} />
+          </Fragment>
+        )}
+        <Route Component={NotFound} path='*'/>
+      </Routes>
     </div>
   );
 }
