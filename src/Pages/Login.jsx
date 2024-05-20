@@ -1,15 +1,16 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import '../App.css';
 import { useDispatch } from 'react-redux';
-import { setLoggedIn } from '../Redux/Reducers/AuthenticationReducer';
+import { setLoggedIn, setUserId } from '../Redux/Reducers/AuthenticationReducer';
 
 export default function Login() {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const navigator = useNavigate();
   const dispatcher = useDispatch();
+  const [userData, setUserData] = useState(null);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -17,7 +18,7 @@ export default function Login() {
     const password = passwordRef.current.value;
 
     if (email.length > 0 && password.length > 0) {
-      fetch("https://backend-fintech-user-app.onrender.com/api/auth/signin", {
+      fetch("http://localhost:5000/api/auth/signin", {
         method: "POST",
         body: JSON.stringify({
           email,
@@ -33,8 +34,10 @@ export default function Login() {
         .then((result) => {
           if (result.success && result.token) {
             sessionStorage.setItem("_tk", result.token);
+            setUserData(result.userId);
             dispatcher(setLoggedIn(true));
-            navigator('/dashboard');
+            dispatcher(setUserId(result.userId));
+            navigator('/app/dashboard');
           } else {
 
           }

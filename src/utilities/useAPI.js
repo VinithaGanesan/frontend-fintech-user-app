@@ -1,0 +1,16 @@
+const host = "https://backend-fintech-user-app.onrender.com";
+export const addExpenseAPI = `${host}/api/expenses/create`;
+export const getExpenseAPI = `${host}/api/expenses/`;
+export const getpartExpenseAPI = `${host}/api/expenses/selectedlist`;
+export const addIncomeAPI = `${host}/api/income/create`;
+export const getIncomeAPI = `${host}/api/income/`;
+export const getpartIncomeAPI = `${host}/api/income/selectedlist`;
+export const addInvestmentAPI = `${host}/api/investment/create`;
+export const getInvestmentAPI = `${host}/api/investment/`;
+export const getpartInvestmentAPI = `${host}/api/investment/selectedlist`;
+export const addLoanAPI = `${host}/api/loan/create`;
+export const getLoanAPI = `${host}/api/loan/`;
+export const getpartLoanAPI = `${host}/api/loan/selectedlist`;
+export const addBudgetAPI = `${host}/api/budget/create`;
+export const getBudgetAPI = `${host}/api/budget`;
+export const getpartBudgetAPI = `${host}/api/budget/selectedlist`;
