@@ -3,7 +3,7 @@ import Select from '../Elements/Select'
 import TextInput from '../Elements/TextInput'
 import { category, transactiontype } from '../Constants/Constants';
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
-import { addInvestmentAPI } from '../utilities/useAPI';
+import { addExpenseAPI } from '../utilities/useAPI';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import GetExpenses from '../components/Output/GetExpenses';
@@ -36,7 +36,7 @@ export default function Expenses() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (values) {
-      fetch(addInvestmentAPI, {
+      fetch(addExpenseAPI, {
         method: "POST",
         body: JSON.stringify(values),
         headers: {

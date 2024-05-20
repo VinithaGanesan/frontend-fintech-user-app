@@ -44,10 +44,7 @@ export default function GetParExpenses() {
         .then((result) => {
           if (result.success) {
             sessionStorage.setItem("_tk", result.token);
-            console.log(result);
-            console.log(values);
             setSelectedlist(result.data)
-
           } else {
 
           }
@@ -62,11 +59,7 @@ export default function GetParExpenses() {
 
   return (
     <div>
-      <Box>
-        <Typography variant='h5'>
-        Selected Transactions
-        </Typography>
-      </Box>
+
       <Box sx={{ width: 300 }}>
         <form onSubmit={handleSubmit}>
           <TextInput
@@ -94,7 +87,12 @@ export default function GetParExpenses() {
         </form>
       </Box>
       <Box>
-        {/* {selectedlist &&
+        <Typography variant='h5'>
+        Selected Transactions
+        </Typography>
+      </Box>
+      <Box>
+        {selectedlist &&
           selectedlist.map((dataObj, index) => {
             return (
               <div
@@ -124,7 +122,7 @@ export default function GetParExpenses() {
                 </Grid>
               </div>
             );
-          })} */}
+          })}
       </Box>
 
     </div>

@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import Select from '../Elements/Select'
 import TextInput from '../Elements/TextInput'
 import { category, transactiontype } from '../Constants/Constants';
-import { Button } from '@mui/material';
-import { addExpenseAPI } from '../utilities/useAPI';
+import { Box, Button, Container, Grid, Typography } from '@mui/material';
+import { addInvestmentAPI } from '../utilities/useAPI';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import GetExpenses from '../components/Output/GetExpenses';
+
 
 export default function Investment() {
   const { userId } = useSelector((state) => (state.authreducer))
@@ -22,7 +24,6 @@ export default function Investment() {
 
   const [values, setValues] = useState(initialState);
 
-  const navigator = useNavigate();
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -33,31 +34,31 @@ export default function Investment() {
   };
 
   const handleSubmit = (e) => {
-      e.preventDefault();
-      if(values){
-        fetch(addExpenseAPI, {
-          method: "POST",
-          body: JSON.stringify(values),
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
+    e.preventDefault();
+    if (values) {
+      fetch(addInvestmentAPI, {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          return response.json()
         })
-          .then((response) => {
-            return response.json()
-          })
-          .then((result) => {
-            if (result.success) {
-              sessionStorage.setItem("_tk", result.token);
-              resetForm(e);
-            } else {
-  
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-          })
-      }
+        .then((result) => {
+          if (result.success) {
+            sessionStorage.setItem("_tk", result.token);
+            resetForm(e);
+          } else {
+
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    }
 
   };
 
@@ -65,74 +66,89 @@ export default function Investment() {
     e.preventDefault();
     setValues(initialState);
     console.log(values);
-};
+  };
 
 
   return (
     <div>
-       <form onSubmit={handleSubmit}>
-                <div className="row">
-                  <div className="col-6">
-                    <Select
-                      label="Select Transaction type"
-                      id="transactiontype"
-                      name="transactiontype"
-                      value={values?.transactiontype}
-                      onChange={handleChange}
-                      options={transactiontype}
-                    />
-                    <Select
-                      label="Select Category"
-                      id="category"
-                      name="category"
-                      value={values?.category}
-                      onChange={handleChange}
-                      options={category}
-                    />
-                    <TextInput
-                      label="Description"
-                      id="description"
-                      name="description"
-                      type="text"
-                      value={values["description"]}
-                      placeholder="Enter Description"
-                      onChange={handleChange}
-                    />
-                    <TextInput
-                      label="Date of expense"
-                      id="date"
-                      name="date"
-                      placeholder="Select Date of expense"
-                      type="date"
-                      value={values["date"]}
-                      onChange={handleChange}
-                    />
-                    <TextInput
-                      label="Expense amount"
-                      id="amount"
-                      name="amount"
-                      type="number"
-                      value={values["amount"]}
-                      placeholder="Enter Offer Image"
-                      onChange={handleChange}
-                    />            
+      <Container>
+        <Box>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <Box>
+                <form onSubmit={handleSubmit}>
+
+                  <Select
+                    label="Select Transaction type"
+                    id="transactiontype"
+                    name="transactiontype"
+                    value={values?.transactiontype}
+                    onChange={handleChange}
+                    options={transactiontype}
+                  />
+                  <Select
+                    label="Select Category"
+                    id="category"
+                    name="category"
+                    value={values?.category}
+                    onChange={handleChange}
+                    options={category}
+                  />
+                  <TextInput
+                    label="Description"
+                    id="description"
+                    name="description"
+                    type="text"
+                    value={values["description"]}
+                    placeholder="Enter Description"
+                    onChange={handleChange}
+                  />
+                  <TextInput
+                    label="Date of expense"
+                    id="date"
+                    name="date"
+                    placeholder="Select Date of expense"
+                    type="date"
+                    value={values["date"]}
+                    onChange={handleChange}
+                  />
+                  <TextInput
+                    label="Expense amount"
+                    id="amount"
+                    name="amount"
+                    type="number"
+                    value={values["amount"]}
+                    placeholder="Enter Offer Image"
+                    onChange={handleChange}
+                  />
                   <Button type="submit" variant="outlined">
-                    Add Investment
+                    Add Expense
                   </Button>
-                    <Button
-                      onClick={resetForm}
-                      variant="outlined"
-                    >
-                      Reset Form
-                    </Button>
-                  </div>
-                </div>
-              </form>
-
-
-
-
-
+                  <Button variant="outlined"
+                    onClick={resetForm}
+                  >
+                    Reset Form
+                  </Button>
+                </form>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Typography variant='h5'>
+                All Transactions
+              </Typography>
+              <Box
+                sx={{
+                  width: 'auto',
+                  height: 500,
+                  overflow: 'auto'
+                }}
+              >
+                {/* <GetExpenses /> */}
+              </Box>
+            </Grid>
+          </Grid>
+        </Box>
+      </Container>
     </div>
   )
 }

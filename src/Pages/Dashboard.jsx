@@ -7,6 +7,7 @@ import GetParExpenses from '../components/Output/GetParExpenses'
 export default function Dashboard() {
   return (
     <div>
+      
       <GetParExpenses/>
       
     </div>
