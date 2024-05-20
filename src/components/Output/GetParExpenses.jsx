@@ -92,7 +92,7 @@ export default function GetParExpenses() {
         </Typography>
       </Box>
       <Box>
-        {selectedlist &&
+        {/* {selectedlist &&
           selectedlist.map((dataObj, index) => {
             return (
               <div
@@ -122,7 +122,7 @@ export default function GetParExpenses() {
                 </Grid>
               </div>
             );
-          })}
+          })} */}
       </Box>
 
     </div>
