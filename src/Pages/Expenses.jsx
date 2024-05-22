@@ -18,7 +18,6 @@ export default function Expenses() {
     description: "",
     date: "",
     amount: 0,
-    value: 0,
   }
 
   const [values, setValues] = useState(initialState);
@@ -49,7 +48,6 @@ export default function Expenses() {
         })
         .then((result) => {
           if (result.success) {
-            sessionStorage.setItem("_tk", result.token);
             resetForm(e);
           } else {
 

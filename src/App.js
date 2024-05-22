@@ -35,7 +35,6 @@ function App() {
                 />
               ))}
           </Route>
-          <Route Component={NotFound} path='*'/>
         </Fragment>
       )
     }
@@ -46,6 +45,7 @@ function App() {
 
       <Routes>
         {renderRoutes(isLoggedIn)}
+        <Route Component={NotFound} path="*" />
       </Routes>
 
 

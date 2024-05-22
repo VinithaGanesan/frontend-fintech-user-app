@@ -14,13 +14,13 @@ export const AutheticationRoutes = [
       id: 1,
       name: "Login",
       component: Login,
-      path: "/",
+      path: "/login",
     },
     {
       id: 2,
       name: "Signup",
       component: SignUp,
-      path: "/signup",
+      path: "/",
     },
   ];
   

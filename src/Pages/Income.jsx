@@ -18,7 +18,6 @@ export default function Income() {
     description: "",
     date: "",
     amount: 0,
-    value: 0,
   }
 
   const [values, setValues] = useState(initialState);
@@ -49,7 +48,6 @@ export default function Income() {
         })
         .then((result) => {
           if (result.success) {
-            sessionStorage.setItem("_tk", result.token);
             resetForm(e);
           } else {
 
@@ -122,7 +120,7 @@ export default function Income() {
                     onChange={handleChange}
                   />
                   <Button type="submit" variant="outlined">
-                    Add Expense
+                    Add Income
                   </Button>
                   <Button variant="outlined"
                     onClick={resetForm}

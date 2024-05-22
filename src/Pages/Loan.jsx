@@ -18,7 +18,6 @@ export default function Loan() {
     description: "",
     date: "",
     amount: 0,
-    value: 0,
   }
 
   const [values, setValues] = useState(initialState);
@@ -122,7 +121,7 @@ export default function Loan() {
                     onChange={handleChange}
                   />
                   <Button type="submit" variant="outlined">
-                    Add Expense
+                    Add Loan
                   </Button>
                   <Button variant="outlined"
                     onClick={resetForm}

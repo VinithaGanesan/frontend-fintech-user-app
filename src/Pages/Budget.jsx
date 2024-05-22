@@ -13,11 +13,8 @@ export default function Budget() {
 
   const initialState = {
     userId: userId,
-    transactiontype: "",
-    category: "",
-    description: "",
+    type: "",
     date: "",
-    amount: 0,
     value: 0,
   }
 
@@ -80,29 +77,13 @@ export default function Budget() {
 
                   <Select
                     label="Select Transaction type"
-                    id="transactiontype"
-                    name="transactiontype"
+                    id="type"
+                    name="type"
                     value={values?.transactiontype}
                     onChange={handleChange}
                     options={transactiontype}
                   />
-                  <Select
-                    label="Select Category"
-                    id="category"
-                    name="category"
-                    value={values?.category}
-                    onChange={handleChange}
-                    options={category}
-                  />
-                  <TextInput
-                    label="Description"
-                    id="description"
-                    name="description"
-                    type="text"
-                    value={values["description"]}
-                    placeholder="Enter Description"
-                    onChange={handleChange}
-                  />
+                
                   <TextInput
                     label="Date of expense"
                     id="date"

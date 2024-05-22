@@ -1,8 +1,8 @@
 import { Box, Button, Grid, Typography } from '@mui/material';
 import React, { useState } from 'react'
-import { getpartExpenseAPI } from '../../utilities/useAPI';
 import { useSelector } from 'react-redux';
 import TextInput from '../../Elements/TextInput';
+import { getpartExpenseAPI } from '../../utilities/useAPI';
 
 
 export default function GetParExpenses() {
@@ -43,8 +43,8 @@ export default function GetParExpenses() {
         })
         .then((result) => {
           if (result.success) {
-            sessionStorage.setItem("_tk", result.token);
-            setSelectedlist(result.data)
+            console.log(result);
+            setSelectedlist(result.data);
           } else {
 
           }

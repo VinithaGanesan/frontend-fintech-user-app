@@ -31,7 +31,7 @@ export default function AppLayout({ children }) {
             </Grid>
             <Grid item xs={12} sm={10}>
               <Box >
-              <Outlet />
+              {children}
               </Box>
             </Grid>
             <Grid item xs={12}>

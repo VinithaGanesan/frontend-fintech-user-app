@@ -2,6 +2,7 @@ import { Button } from '@mui/material';
 import React, { useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../App.css';
+import { SignUpAPI } from '../utilities/useAPI';
 
 export default function SignUp() {
   const firstnameRef = useRef(null);
@@ -18,7 +19,7 @@ export default function SignUp() {
     const password = passwordRef.current.value;
 
     if (firstName.length > 0 && lastName.length > 0 && email.length > 0 && password.length > 0) {
-      fetch("https://backend-fintech-user-app.onrender.com/api/auth/create", {
+      fetch(SignUpAPI, {
         method: "POST",
         body: JSON.stringify({
           firstName,

@@ -1,4 +1,6 @@
 const host = "https://backend-fintech-user-app.onrender.com";
+export const loginAPI = `${host}/api/auth/signin`;
+export const SignUpAPI = `${host}/api/auth/create`;
 export const addExpenseAPI = `${host}/api/expenses/create`;
 export const getExpenseAPI = `${host}/api/expenses/`;
 export const getpartExpenseAPI = `${host}/api/expenses/selectedlist`;
