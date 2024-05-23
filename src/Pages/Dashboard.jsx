@@ -144,7 +144,7 @@ export default function Dashboard() {
   const totalIncomeAmount = income?.reduce((incometotal, income) => incometotal + income.amount, 0);
   const totalInvestmenteAmount = investment?.reduce((investmenttotal, investment) => investmenttotal + investment.amount, 0);
   const totalLoanAmount = loan?.reduce((loantotal, loan) => loantotal + loan.amount, 0);
-  const totalbalance = totalIncomeAmount - (totalIncomeAmount + totalInvestmenteAmount + totalLoanAmount)
+  const totalbalance = totalIncomeAmount - (totalexpenseAmount + totalInvestmenteAmount + totalLoanAmount)
 
   return (
     <div>

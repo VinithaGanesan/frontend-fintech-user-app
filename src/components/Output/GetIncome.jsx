@@ -44,7 +44,7 @@ export default function GetIncome() {
     <Box>
       <Grid>
         <Typography variant='h6'>
-          {/* Total Expense = {totalIncome} */}
+          Total Expense = {totalIncome}
         </Typography>
       </Grid>
       <Grid sx={{
