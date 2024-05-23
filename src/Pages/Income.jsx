@@ -4,7 +4,6 @@ import TextInput from '../Elements/TextInput'
 import { Incomecategory, transactiontype } from '../Constants/Constants';
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
 import { addIncomeAPI } from '../utilities/useAPI';
-import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import GetIncome from '../components/Output/GetIncome';
 
@@ -21,8 +20,6 @@ export default function Income() {
   }
 
   const [values, setValues] = useState(initialState);
-
-  const navigator = useNavigate();
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -49,21 +46,17 @@ export default function Income() {
         .then((result) => {
           if (result.success) {
             resetForm(e);
-          } else {
-
           }
         })
         .catch((error) => {
           console.log(error);
         })
     }
-
   };
 
   const resetForm = (e) => {
     e.preventDefault();
     setValues(initialState);
-    console.log(values);
   };
 
 
@@ -85,7 +78,7 @@ export default function Income() {
                     options={transactiontype}
                   />
                   <Select
-                    label="Select Category"
+                    label="Select Income Category"
                     id="category"
                     name="category"
                     value={values?.category}
@@ -102,21 +95,21 @@ export default function Income() {
                     onChange={handleChange}
                   />
                   <TextInput
-                    label="Date of expense"
+                    label="Date of Income"
                     id="date"
                     name="date"
-                    placeholder="Select Date of expense"
+                    placeholder="Select Date of Income"
                     type="date"
                     value={values["date"]}
                     onChange={handleChange}
                   />
                   <TextInput
-                    label="Expense amount"
+                    label="Income amount"
                     id="amount"
                     name="amount"
                     type="number"
                     value={values["amount"]}
-                    placeholder="Enter Offer Image"
+                    placeholder="Enter Income Amount"
                     onChange={handleChange}
                   />
                   <Button type="submit" variant="outlined">
@@ -132,10 +125,10 @@ export default function Income() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <Typography variant='h5'>
-                All Transactions
+                All Income Transactions
               </Typography>
               <Box>
-               <GetIncome/>
+                <GetIncome />
               </Box>
             </Grid>
           </Grid>

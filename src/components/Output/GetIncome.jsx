@@ -3,14 +3,16 @@ import { getIncomeAPI } from '../../utilities/useAPI';
 import { Box, Grid, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { addIncome } from '../../Redux/Reducers/IncomeReducer';
+import { formatDate } from '../../utilities/dateFormat';
+
 
 export default function GetIncome() {
-
+  
   const { userId } = useSelector((state) => (state.authreducer));
   const dispatch = useDispatch();
   const { income } = useSelector((state) => (state.incomereducer));
   const totalincomeAmount = income?.reduce((total, income) => total + income.amount, 0);
-  const totalIncome = totalincomeAmount.toLocaleString("en-US", {style:"currency", currency:"INR"});
+  const totalIncome = totalincomeAmount.toLocaleString("en-US", { maximumFractionDigits: 2, style:"currency", currency:"INR"});
 
 
   const fetchInfo = () => {
@@ -44,7 +46,7 @@ export default function GetIncome() {
     <Box>
       <Grid>
         <Typography variant='h6'>
-          Total Expense = {totalIncome}
+          Total Income = {totalIncome}
         </Typography>
       </Grid>
       <Grid sx={{
@@ -78,7 +80,7 @@ export default function GetIncome() {
                     direction="row"
                     justifyContent="space-between"
                     alignItems="center">
-                    <p style={{ fontSize: 20, color: 'white' }}>{dataObj.date}</p>
+                    <p style={{ fontSize: 20, color: 'white' }}>{formatDate(dataObj.date)}</p>
                     <p style={{ fontSize: 20, color: 'white' }}>Rs{dataObj.amount}</p>
                   </Grid>
                 </div>

@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import Select from '../Elements/Select'
 import TextInput from '../Elements/TextInput'
-import { category, transactiontype } from '../Constants/Constants';
+import { Budgetcategory } from '../Constants/Constants';
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
 import { addBudgetAPI } from '../utilities/useAPI';
-import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import GetExpenses from '../components/Output/GetExpenses';
+import GetBudget from '../components/Output/GetBudget';
 
 export default function Budget() {
   const { userId } = useSelector((state) => (state.authreducer))
@@ -19,8 +18,6 @@ export default function Budget() {
   }
 
   const [values, setValues] = useState(initialState);
-
-  const navigator = useNavigate();
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -48,23 +45,18 @@ export default function Budget() {
           if (result.success) {
             sessionStorage.setItem("_tk", result.token);
             resetForm(e);
-          } else {
-
           }
         })
         .catch((error) => {
           console.log(error);
         })
     }
-
   };
 
   const resetForm = (e) => {
     e.preventDefault();
     setValues(initialState);
-    console.log(values);
   };
-
 
   return (
     <div>
@@ -74,36 +66,34 @@ export default function Budget() {
             <Grid item xs={12} sm={6}>
               <Box>
                 <form onSubmit={handleSubmit}>
-
                   <Select
                     label="Select Transaction type"
                     id="type"
                     name="type"
-                    value={values?.transactiontype}
+                    value={values?.type}
                     onChange={handleChange}
-                    options={transactiontype}
+                    options={Budgetcategory}
                   />
-                
                   <TextInput
-                    label="Date of expense"
+                    label="Date of Budget"
                     id="date"
                     name="date"
-                    placeholder="Select Date of expense"
+                    placeholder="Select Date of Budget"
                     type="date"
                     value={values["date"]}
                     onChange={handleChange}
                   />
                   <TextInput
-                    label="Expense amount"
-                    id="amount"
-                    name="amount"
+                    label="Budget value"
+                    id="value"
+                    name="value"
                     type="number"
-                    value={values["amount"]}
-                    placeholder="Enter Offer Image"
+                    value={values["value"]}
+                    placeholder="Enter value of Budget"
                     onChange={handleChange}
                   />
                   <Button type="submit" variant="outlined">
-                    Add Expense
+                    Add Budget
                   </Button>
                   <Button variant="outlined"
                     onClick={resetForm}
@@ -115,7 +105,7 @@ export default function Budget() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <Typography variant='h5'>
-                All Transactions
+                All Budgets
               </Typography>
               <Box
                 sx={{
@@ -124,7 +114,7 @@ export default function Budget() {
                   overflow: 'auto'
                 }}
               >
-                {/* <GetExpenses /> */}
+                <GetBudget />
               </Box>
             </Grid>
           </Grid>

@@ -1,4 +1,4 @@
-import { Box, Container, FormControl, FormHelperText, Grid, Input, InputLabel, TextField, Typography } from '@mui/material'
+import { Box, Container, Grid, Typography } from '@mui/material'
 import React, { useEffect } from 'react'
 import GetParExpenses from '../components/Output/GetParExpenses';
 import { PieChart } from '@mui/x-charts/PieChart';
@@ -10,8 +10,6 @@ import { addIncome } from '../Redux/Reducers/IncomeReducer';
 import { addLoan } from '../Redux/Reducers/LoanReducer';
 
 
-
-
 export default function Dashboard() {
   const { userId } = useSelector((state) => (state.authreducer));
 
@@ -20,10 +18,7 @@ export default function Dashboard() {
   const { income } = useSelector((state) => (state.incomereducer));
   const { investment } = useSelector((state) => (state.investmentreducer));
 
-
-
   const dispatch = useDispatch();
-
 
   const fetchInfo = () => {
     return fetch(getExpenseAPI, {
@@ -39,12 +34,7 @@ export default function Dashboard() {
       })
       .then((result) => {
         if (result.success) {
-          sessionStorage.setItem("_tk", result.token);
           dispatch(addExpense(result.data));
-          // console.log(result.data);
-          console.log(list);
-        } else {
-
         }
       })
       .catch((error) => {
@@ -65,12 +55,7 @@ export default function Dashboard() {
       })
       .then((result) => {
         if (result.success) {
-          sessionStorage.setItem("_tk", result.token);
           dispatch(addIncome(result.data));
-          // console.log(result.data);
-          console.log(list);
-        } else {
-
         }
       })
       .catch((error) => {
@@ -91,12 +76,7 @@ export default function Dashboard() {
       })
       .then((result) => {
         if (result.success) {
-          sessionStorage.setItem("_tk", result.token);
           dispatch(addInvestment(result.data));
-          // console.log(result.data);
-          console.log(list);
-        } else {
-
         }
       })
       .catch((error) => {
@@ -117,20 +97,13 @@ export default function Dashboard() {
       })
       .then((result) => {
         if (result.success) {
-          sessionStorage.setItem("_tk", result.token);
           dispatch(addLoan(result.data));
-          // console.log(result.data);
-          console.log(list);
-        } else {
-
         }
       })
       .catch((error) => {
         console.log(error);
       })
   }
-
-
 
   useEffect(() => {
     fetchInfo();
@@ -154,9 +127,8 @@ export default function Dashboard() {
             <Grid item xs={12} sm={6}>
               <GetParExpenses />
             </Grid>
-
             <Grid item xs={12} sm={6}>
-              <Grid sx={{ marginBottom: "30px"}}>
+              <Grid sx={{ marginBottom: "30px" }}>
                 <Typography variant='h6'>
                   Total Income = {totalIncomeAmount}
                 </Typography>
@@ -174,26 +146,21 @@ export default function Dashboard() {
                 </Typography>
               </Grid>
               <Grid>
-              <PieChart
-                series={[
-                  {
-                    data: [
-                      { id: 0, value: 10, label: 'series A' },
-                      { id: 1, value: 15, label: 'series B' },
-                      { id: 2, value: 20, label: 'series C' },
-                    ],
-                  },
-                ]}
-                width={400}
-                height={200}
-              />              
+                <PieChart
+                  series={[
+                    {
+                      data: [
+                        { id: 0, value: `${totalInvestmenteAmount}`, label: 'Investment' },
+                        { id: 1, value: `${totalexpenseAmount}`, label: 'Expense' },
+                        { id: 2, value: `${totalLoanAmount}`, label: 'Loan' },
+
+                      ],
+                    },
+                  ]}
+                  width={400}
+                  height={200}
+                />
               </Grid>
-
-
-
-
-
-
             </Grid>
           </Grid>
         </Box>

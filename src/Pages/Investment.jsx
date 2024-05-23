@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Select from '../Elements/Select'
 import TextInput from '../Elements/TextInput'
-import { Investcategory, category, transactiontype } from '../Constants/Constants';
+import { Investcategory, transactiontype } from '../Constants/Constants';
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
 import { addInvestmentAPI } from '../utilities/useAPI';
 import { useSelector } from 'react-redux';
@@ -21,7 +21,6 @@ export default function Investment() {
   }
 
   const [values, setValues] = useState(initialState);
-
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -48,21 +47,17 @@ export default function Investment() {
         .then((result) => {
           if (result.success) {
             resetForm(e);
-          } else {
-
           }
         })
         .catch((error) => {
           console.log(error);
         })
     }
-
   };
 
   const resetForm = (e) => {
     e.preventDefault();
     setValues(initialState);
-    console.log(values);
   };
 
 
@@ -101,21 +96,21 @@ export default function Investment() {
                     onChange={handleChange}
                   />
                   <TextInput
-                    label="Date of expense"
+                    label="Date of Investment"
                     id="date"
                     name="date"
-                    placeholder="Select Date of expense"
+                    placeholder="Select Date of Investment"
                     type="date"
                     value={values["date"]}
                     onChange={handleChange}
                   />
                   <TextInput
-                    label="Expense amount"
+                    label="Investment amount"
                     id="amount"
                     name="amount"
                     type="number"
                     value={values["amount"]}
-                    placeholder="Enter Offer Image"
+                    placeholder="Enter Investment Amount"
                     onChange={handleChange}
                   />
                   <Button type="submit" variant="outlined">
@@ -131,7 +126,7 @@ export default function Investment() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <Typography variant='h5'>
-                All Transactions
+                All Investments
               </Typography>
               <Box
                 sx={{

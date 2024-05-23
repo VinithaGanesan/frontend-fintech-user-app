@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import TextInput from '../../Elements/TextInput';
 import { getpartExpenseAPI } from '../../utilities/useAPI';
-
+import { formatDate } from '../../utilities/dateFormat';
 
 export default function GetParExpenses() {
 
@@ -29,7 +29,6 @@ export default function GetParExpenses() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     fetch(getpartExpenseAPI, {
       method: "POST",
       body: JSON.stringify(values),
@@ -43,24 +42,16 @@ export default function GetParExpenses() {
       })
       .then((result) => {
         if (result.success) {
-          console.log(result);
-          console.log(values);
           setSelectedlist(result.data);
-        } else {
-
         }
       })
       .catch((error) => {
         console.log(error);
       })
-
-
   };
-
 
   return (
     <div>
-
       <Box sx={{ width: 300 }}>
         <form onSubmit={handleSubmit}>
           <TextInput
@@ -71,7 +62,6 @@ export default function GetParExpenses() {
             type="date"
             value={values["startDate"]}
             onChange={handleChange}
-
           />
           <TextInput
             label="Date of expense"
@@ -92,45 +82,43 @@ export default function GetParExpenses() {
           Selected Expenses
         </Typography>
       </Box>
-
-      {
-        selectedlist?.map((dataObj, index) => {
-          return (
-            <div
-              style={{
-                width: "auto",
-                backgroundColor: "grey",
-                padding: "5px 25px",
-                borderRadius: 10,
-                marginBlock: 10,
-
-              }}
-              key={dataObj.index}
-            >
-              <Grid container
-                direction="row"
-                justifyContent="space-between"
-                alignItems="center">
-                <p style={{ fontSize: 20, color: 'white' }}>{dataObj.category}</p>
-                <p style={{ fontSize: 20, color: 'white' }}>{dataObj.transactiontype}</p>
-              </Grid>
-              <Grid container
-                direction="row"
-                justifyContent="space-between"
-                alignItems="center">
-                <p style={{ fontSize: 20, color: 'white' }}>{dataObj.date}</p>
-                <p style={{ fontSize: 20, color: 'white' }}>Rs{dataObj.amount}</p>
-              </Grid>
-
-            </div>
-          );
-        })}
-
-      <div>
-
-      </div>
-
-
+      <Box sx={{
+        width: 'auto',
+        height: 350,
+        overflow: 'auto'
+      }}>
+        {
+          selectedlist?.map((dataObj, index) => {
+            return (
+              <div
+                style={{
+                  width: "auto",
+                  backgroundColor: "grey",
+                  padding: "5px 25px",
+                  borderRadius: 10,
+                  marginBlock: 10,
+                }}
+                key={dataObj.index}
+              >
+                <Grid container
+                  direction="row"
+                  justifyContent="space-between"
+                  alignItems="center">
+                  <p style={{ fontSize: 20, color: 'white' }}>{dataObj.category}</p>
+                  <p style={{ fontSize: 20, color: 'white' }}>{dataObj.transactiontype}</p>
+                </Grid>
+                <Grid container
+                  direction="row"
+                  justifyContent="space-between"
+                  alignItems="center">
+                  <p style={{ fontSize: 20, color: 'white' }}>{formatDate(dataObj.date)}</p>
+                  <p style={{ fontSize: 20, color: 'white' }}>Rs{dataObj.amount}</p>
+                </Grid>
+              </div>
+            );
+          })}
+      </Box>
     </div>
+
   )
 }

@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import Select from '../Elements/Select'
 import TextInput from '../Elements/TextInput'
-import { category, transactiontype } from '../Constants/Constants';
+import { Loancategory, transactiontype } from '../Constants/Constants';
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
-import { addExpenseAPI, addLoanAPI } from '../utilities/useAPI';
-import { useNavigate } from 'react-router-dom';
+import { addLoanAPI } from '../utilities/useAPI';
 import { useSelector } from 'react-redux';
-import GetExpenses from '../components/Output/GetExpenses';
 import GetLoan from '../components/Output/GetLoan';
 
 export default function Loan() {
@@ -23,7 +21,6 @@ export default function Loan() {
 
   const [values, setValues] = useState(initialState);
 
-  const navigator = useNavigate();
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -49,10 +46,7 @@ export default function Loan() {
         })
         .then((result) => {
           if (result.success) {
-            sessionStorage.setItem("_tk", result.token);
             resetForm(e);
-          } else {
-
           }
         })
         .catch((error) => {
@@ -65,9 +59,7 @@ export default function Loan() {
   const resetForm = (e) => {
     e.preventDefault();
     setValues(initialState);
-    console.log(values);
   };
-
 
   return (
     <div>
@@ -92,7 +84,7 @@ export default function Loan() {
                     name="category"
                     value={values?.category}
                     onChange={handleChange}
-                    options={category}
+                    options={Loancategory}
                   />
                   <TextInput
                     label="Description"
@@ -104,21 +96,21 @@ export default function Loan() {
                     onChange={handleChange}
                   />
                   <TextInput
-                    label="Date of expense"
+                    label="Date of Loan"
                     id="date"
                     name="date"
-                    placeholder="Select Date of expense"
+                    placeholder="Select Date of Loan"
                     type="date"
                     value={values["date"]}
                     onChange={handleChange}
                   />
                   <TextInput
-                    label="Expense amount"
+                    label="Loan amount"
                     id="amount"
                     name="amount"
                     type="number"
                     value={values["amount"]}
-                    placeholder="Enter Offer Image"
+                    placeholder="Enter Loan Amount"
                     onChange={handleChange}
                   />
                   <Button type="submit" variant="outlined">
@@ -134,7 +126,7 @@ export default function Loan() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <Typography variant='h5'>
-                All Transactions
+                All Loans
               </Typography>
               <Box
                 sx={{
@@ -143,7 +135,7 @@ export default function Loan() {
                   overflow: 'auto'
                 }}
               >
-               <GetLoan/>
+                <GetLoan />
               </Box>
             </Grid>
           </Grid>

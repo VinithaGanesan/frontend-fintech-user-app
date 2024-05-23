@@ -3,6 +3,7 @@ import { getExpenseAPI } from '../../utilities/useAPI';
 import { Box, Grid, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { addExpense } from '../../Redux/Reducers/ExpenseReducer';
+import { formatDate } from '../../utilities/dateFormat';
 
 export default function GetExpenses() {
     const { userId } = useSelector((state) => (state.authreducer));
@@ -14,7 +15,7 @@ export default function GetExpenses() {
         style: 'currency',
         currency: 'INR'
     });
-    
+
 
     const fetchInfo = () => {
         return fetch(getExpenseAPI, {
@@ -50,10 +51,10 @@ export default function GetExpenses() {
                 </Typography>
             </Grid>
             <Grid sx={{
-                  width: 'auto',
-                  height: 500,
-                  overflow: 'auto'
-                }}>
+                width: 'auto',
+                height: 500,
+                overflow: 'auto'
+            }}>
                 <div>
                     {list &&
                         list.map((dataObj, index) => {
@@ -80,7 +81,7 @@ export default function GetExpenses() {
                                         direction="row"
                                         justifyContent="space-between"
                                         alignItems="center">
-                                        <p style={{ fontSize: 20, color: 'white' }}>{dataObj.date}</p>
+                                        <p style={{ fontSize: 20, color: 'white' }}>{formatDate(dataObj.date)}</p>
                                         <p style={{ fontSize: 20, color: 'white' }}>Rs{dataObj.amount}</p>
                                     </Grid>
                                 </div>

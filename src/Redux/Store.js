@@ -4,6 +4,7 @@ import ExpenseReducer from './Reducers/ExpenseReducer';
 import IncomeReducer from './Reducers/IncomeReducer';
 import InvestmentReducer from './Reducers/InvestmentReducer';
 import LoanReducer from './Reducers/LoanReducer';
+import BudgetReducer from './Reducers/BudgetReducer';
 
 const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
         incomereducer:IncomeReducer,
         investmentreducer: InvestmentReducer,
         loanreducer: LoanReducer,
+        budgetreducer: BudgetReducer,
     },
 });
 

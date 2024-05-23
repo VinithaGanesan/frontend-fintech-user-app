@@ -9,7 +9,6 @@ import NotFound from './Pages/NotFound';
 function App() {
   const { isLoggedIn } = useSelector((state) => (state.authreducer));
 
-
   function renderRoutes(isLoggedIn = false) {
     if (!isLoggedIn) {
       return (
@@ -42,29 +41,10 @@ function App() {
 
   return (
     <div className="App">
-
       <Routes>
         {renderRoutes(isLoggedIn)}
         <Route Component={NotFound} path="*" />
       </Routes>
-
-
-
-
-      {/* <Routes>
-        {!isLoggedIn && (
-          <Fragment>
-            <Route path='/' Component={SignUp} />
-            <Route path='/login' Component={Login} />
-          </Fragment>
-        )}
-        {isLoggedIn && (
-          <Fragment>
-          <Route path='/dashboard' Component={Dashboard} />
-          </Fragment>
-        )}
-        <Route Component={NotFound} path='*'/>
-      </Routes> */}
     </div>
   );
 }

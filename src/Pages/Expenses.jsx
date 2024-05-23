@@ -9,9 +9,6 @@ import { addExpenseAPI } from '../utilities/useAPI';
 
 export default function Expenses() {
   const { userId } = useSelector((state) => (state.authreducer));
-  const expenses = useSelector((state) => state.expensereducer.list);
-
-
 
   const initialState = {
     userId: userId,
@@ -23,7 +20,6 @@ export default function Expenses() {
   }
 
   const [values, setValues] = useState(initialState);
-
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -50,8 +46,6 @@ export default function Expenses() {
         .then((result) => {
           if (result.success) {
             resetForm(e);
-          } else {
-
           }
         })
         .catch((error) => {
@@ -64,7 +58,6 @@ export default function Expenses() {
   const resetForm = (e) => {
     e.preventDefault();
     setValues(initialState);
-    console.log(values);
   };
 
 
@@ -133,7 +126,7 @@ export default function Expenses() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <Typography variant='h5'>
-                All Transactions
+                All Expenses
               </Typography>
               <Box>
                 <GetExpenses />

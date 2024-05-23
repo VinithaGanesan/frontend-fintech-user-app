@@ -4,10 +4,8 @@ import { Outlet } from 'react-router-dom'
 
 export default function app() {
   return (
-    <div>
     <AppLayout>
-        <Outlet/>
+      <Outlet />
     </AppLayout>
-</div>
   )
 }

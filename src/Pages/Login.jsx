@@ -35,13 +35,10 @@ export default function Login() {
         .then((result) => {
           if (result.success && result.token) {
             localStorage.setItem("_tk", result.token);
-            console.log(result.token);
             setUserData(result.userId);
             dispatcher(setLoggedIn(true));
             dispatcher(setUserId(result.userId));
             navigator('/app/dashboard');
-          } else {
-
           }
         })
         .catch((error) => {
