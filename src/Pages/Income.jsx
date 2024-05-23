@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import Select from '../Elements/Select'
 import TextInput from '../Elements/TextInput'
-import { category, transactiontype } from '../Constants/Constants';
+import { Incomecategory, transactiontype } from '../Constants/Constants';
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
 import { addIncomeAPI } from '../utilities/useAPI';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import GetExpenses from '../components/Output/GetExpenses';
+import GetIncome from '../components/Output/GetIncome';
 
 export default function Income() {
   const { userId } = useSelector((state) => (state.authreducer))
@@ -90,7 +90,7 @@ export default function Income() {
                     name="category"
                     value={values?.category}
                     onChange={handleChange}
-                    options={category}
+                    options={Incomecategory}
                   />
                   <TextInput
                     label="Description"
@@ -134,14 +134,8 @@ export default function Income() {
               <Typography variant='h5'>
                 All Transactions
               </Typography>
-              <Box
-                sx={{
-                  width: 'auto',
-                  height: 500,
-                  overflow: 'auto'
-                }}
-              >
-                {/* <GetExpenses /> */}
+              <Box>
+               <GetIncome/>
               </Box>
             </Grid>
           </Grid>

@@ -3,13 +3,15 @@ import Select from '../Elements/Select'
 import TextInput from '../Elements/TextInput'
 import { category, transactiontype } from '../Constants/Constants';
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
-import { addExpenseAPI } from '../utilities/useAPI';
-import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import GetExpenses from '../components/Output/GetExpenses';
+import { addExpenseAPI } from '../utilities/useAPI';
 
 export default function Expenses() {
-  const { userId } = useSelector((state) => (state.authreducer))
+  const { userId } = useSelector((state) => (state.authreducer));
+  const expenses = useSelector((state) => state.expensereducer.list);
+
+
 
   const initialState = {
     userId: userId,
@@ -22,7 +24,6 @@ export default function Expenses() {
 
   const [values, setValues] = useState(initialState);
 
-  const navigator = useNavigate();
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -134,13 +135,7 @@ export default function Expenses() {
               <Typography variant='h5'>
                 All Transactions
               </Typography>
-              <Box
-                sx={{
-                  width: 'auto',
-                  height: 500,
-                  overflow: 'auto'
-                }}
-              >
+              <Box>
                 <GetExpenses />
               </Box>
             </Grid>

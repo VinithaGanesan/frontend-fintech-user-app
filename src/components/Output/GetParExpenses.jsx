@@ -17,7 +17,7 @@ export default function GetParExpenses() {
 
   const [values, setValues] = useState(initialState)
 
-  const [selectedlist, setSelectedlist] = useState(initialState);
+  const [selectedlist, setSelectedlist] = useState(null);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -29,30 +29,31 @@ export default function GetParExpenses() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (values) {
-      fetch("https://backend-fintech-user-app.onrender.com/api/expenses/selectedlist", {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => {
-          return response.json()
-        })
-        .then((result) => {
-          if (result.success) {
-            console.log(result);
-            setSelectedlist(result.data);
-          } else {
 
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-    }
+    fetch(getpartExpenseAPI, {
+      method: "POST",
+      body: JSON.stringify(values),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        return response.json()
+      })
+      .then((result) => {
+        if (result.success) {
+          console.log(result);
+          console.log(values);
+          setSelectedlist(result.data);
+        } else {
+
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+
 
   };
 
@@ -70,7 +71,7 @@ export default function GetParExpenses() {
             type="date"
             value={values["startDate"]}
             onChange={handleChange}
-            
+
           />
           <TextInput
             label="Date of expense"
@@ -88,42 +89,47 @@ export default function GetParExpenses() {
       </Box>
       <Box>
         <Typography variant='h5'>
-        Selected Transactions
+          Selected Expenses
         </Typography>
       </Box>
-      <Box>
-        {/* {selectedlist &&
-          selectedlist.map((dataObj, index) => {
-            return (
-              <div
-                style={{
-                  width: "auto",
-                  backgroundColor: "grey",
-                  padding: "5px 25px",
-                  borderRadius: 10,
-                  marginBlock: 10,
 
-                }}
-                key={dataObj.index}
-              >
-                <Grid container
-                  direction="row"
-                  justifyContent="space-between"
-                  alignItems="center">
-                  <p style={{ fontSize: 20, color: 'white' }}>{dataObj.category}</p>
-                  <p style={{ fontSize: 20, color: 'white' }}>{dataObj.transactiontype}</p>
-                </Grid>
-                <Grid container
-                  direction="row"
-                  justifyContent="space-between"
-                  alignItems="center">
-                  <p style={{ fontSize: 20, color: 'white' }}>{dataObj.date}</p>
-                  <p style={{ fontSize: 20, color: 'white' }}>Rs{dataObj.amount}</p>
-                </Grid>
-              </div>
-            );
-          })} */}
-      </Box>
+      {
+        selectedlist?.map((dataObj, index) => {
+          return (
+            <div
+              style={{
+                width: "auto",
+                backgroundColor: "grey",
+                padding: "5px 25px",
+                borderRadius: 10,
+                marginBlock: 10,
+
+              }}
+              key={dataObj.index}
+            >
+              <Grid container
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center">
+                <p style={{ fontSize: 20, color: 'white' }}>{dataObj.category}</p>
+                <p style={{ fontSize: 20, color: 'white' }}>{dataObj.transactiontype}</p>
+              </Grid>
+              <Grid container
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center">
+                <p style={{ fontSize: 20, color: 'white' }}>{dataObj.date}</p>
+                <p style={{ fontSize: 20, color: 'white' }}>Rs{dataObj.amount}</p>
+              </Grid>
+
+            </div>
+          );
+        })}
+
+      <div>
+
+      </div>
+
 
     </div>
   )

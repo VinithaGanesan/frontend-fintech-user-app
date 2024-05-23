@@ -7,6 +7,7 @@ import { addExpenseAPI, addLoanAPI } from '../utilities/useAPI';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import GetExpenses from '../components/Output/GetExpenses';
+import GetLoan from '../components/Output/GetLoan';
 
 export default function Loan() {
   const { userId } = useSelector((state) => (state.authreducer))
@@ -142,7 +143,7 @@ export default function Loan() {
                   overflow: 'auto'
                 }}
               >
-                {/* <GetExpenses /> */}
+               <GetLoan/>
               </Box>
             </Grid>
           </Grid>

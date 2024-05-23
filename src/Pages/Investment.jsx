@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import Select from '../Elements/Select'
 import TextInput from '../Elements/TextInput'
-import { category, transactiontype } from '../Constants/Constants';
+import { Investcategory, category, transactiontype } from '../Constants/Constants';
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
 import { addInvestmentAPI } from '../utilities/useAPI';
-import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import GetExpenses from '../components/Output/GetExpenses';
+import GetInvestment from '../components/Output/GetInvestment';
 
 
 export default function Investment() {
@@ -90,7 +89,7 @@ export default function Investment() {
                     name="category"
                     value={values?.category}
                     onChange={handleChange}
-                    options={category}
+                    options={Investcategory}
                   />
                   <TextInput
                     label="Description"
@@ -141,7 +140,7 @@ export default function Investment() {
                   overflow: 'auto'
                 }}
               >
-                {/* <GetExpenses /> */}
+                <GetInvestment/>
               </Box>
             </Grid>
           </Grid>

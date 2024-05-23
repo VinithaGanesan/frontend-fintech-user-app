@@ -1,24 +1,42 @@
 export const transactiontype = [
     { label: "credit", id: "credit"},
-    { label: "expenses", id: "expenses"},
+    { label: "debit", id: "debit"},
 ];
 
 export const category = [
-    { label: "rent", id: "rent"},
-    { label: "groceries", id: "groceries"},
-    { label: "utilities", id: "utilities"},
-    { label: "healthcare", id: "healthcare"},
-    { label: "gas", id: "gas"},
-    { label: "internet", id: "internet"},
-    { label: "entertainment", id: "entertainment"},
-    { label: "shopping", id: "shopping"},
-    { label: "travel", id: "travel"},
-    { label: "cellphone", id: "cellphone"},
-    { label: "housemaintenance", id: "housemaintenance"},
+    { label: "Rent", id: "rent"},
+    { label: "Groceries", id: "groceries"},
+    { label: "Utilities", id: "utilities"},
+    { label: "Healthcare", id: "healthcare"},
+    { label: "Gas", id: "gas"},
+    { label: "Internet", id: "internet"},
+    { label: "Entertainment", id: "entertainment"},
+    { label: "Shopping", id: "shopping"},
+    { label: "Travel", id: "travel"}, 
+    { label: "Mobile", id: "mobile"},
+    { label: "Housemaintenance", id: "housemaintenance"},
 
 ];
 
-export const Investcategory = [
-    { label: "rent", id: "rent"},
+export const Incomecategory = [
+    { label: "Bank Account", id: "bankaccount" },
+    { label: "Cash In Hand", id: "cashinhand" },
+    { label: "CreditCard", id: "creditcard" },
+];
 
+export const Investcategory = [
+    { label: "RD", id: "rd"},
+    { label: "FD", id: "fd"},
+    { label: "TD", id: "td"},
+    { label: "Gold", id: "gold"},
+    { label: "SHIP", id: "ship"},
+    { label: "BOND", id: "bond"},
+]
+
+export const Loancategory = [
+    { label: "Education", id: "education"},
+    { label: "Housing", id: "housing"},
+    { label: "Vehicle", id: "vehicle"},
+    { label: "Personal", id: "personal"},
+    { label: "CreditCard", id: "creditcard"},
 ]
